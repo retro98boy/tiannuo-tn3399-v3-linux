@@ -150,8 +150,8 @@
 		regulator-name = "vcc3v0_sd";
 		regulator-always-on;
 		regulator-boot-on;
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
+		regulator-min-microvolt = <3000000>;
+		regulator-max-microvolt = <3000000>;
 		vin-supply = <&vcc3v3_sys>;
 	};
 
@@ -692,7 +692,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc_clk &sdmmc_cd &sdmmc_cmd &sdmmc_bus4>;
 	vmmc-supply = <&vcc3v0_sd>;
-	vqmmc-supply = <&vcc_sdio>;
+	vqmmc-supply = <&vcc3v0_sd>;
 	sd-uhs-sdr104;
 	status = "okay";
 };
