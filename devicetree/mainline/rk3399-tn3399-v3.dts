@@ -155,6 +155,20 @@
 		vin-supply = <&vcc3v3_sys>;
 	};
 
+	vcc3v6_lte: regulator-vcc3v6-lte {
+		compatible = "regulator-fixed";
+		enable-active-high;
+		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&vcc3v6_lte_en>;
+		regulator-name = "vcc3v6_lte";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <3600000>;
+		regulator-max-microvolt = <3600000>;
+		vin-supply = <&dc12v>;
+	};
+
 	vcca1v8_s3: regulator-vcca1v8-s3 {
 		compatible = "regulator-fixed";
 		regulator-name = "vcca1v8_s3";
@@ -590,6 +604,12 @@
 	leds {
 		sys_led: sys-led {
 			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	lte {
+		vcc3v6_lte_en: vcc3v6-lte-en {
+			rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_down>;
 		};
 	};
 
