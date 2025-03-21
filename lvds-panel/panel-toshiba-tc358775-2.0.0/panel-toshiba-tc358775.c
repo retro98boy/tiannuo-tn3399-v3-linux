@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (c) 2022 retro98boy <retro98boy@qq.com>
+ */
+
 #include "linux/of_device.h"
 #include <linux/delay.h>
 #include <linux/gpio/consumer.h>

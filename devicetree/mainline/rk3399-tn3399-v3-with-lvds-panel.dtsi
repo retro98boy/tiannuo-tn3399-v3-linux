@@ -1,3 +1,9 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2017 Fuzhou Rockchip Electronics Co., Ltd.
+ * Copyright (c) 2022 retro98boy <retro98boy@qq.com>
+ */
+
 /dts-v1/;
 
 #include "rk3399-tn3399-v3.dts"
