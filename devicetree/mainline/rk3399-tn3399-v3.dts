@@ -19,6 +19,16 @@
 		mmc0 = &sdhci;
 		mmc1 = &sdmmc;
 		mmc2 = &sdio0;
+		/*
+		 * Note: Since the voltage for the level converter between the rk3399 and hym8563 I2C communication is provided by the rk808 regulator,
+		 * the hym8563 driver can only be successfully probed if it is loaded after the rk808 regulator driver.
+		 */
+		rtc0 = &hym8563;
+		/*
+		 * The rk808 circuit design on this board does not have the ability to maintain real-time time after a power outage (battery R1110 NC).
+		 * Registering rk808 as rtc99 (most kernel configurations read time from rtc0) can prevent the kernel from reading the time (2013) from rk808 during startup.
+		 */
+		rtc99 = &rk808;
 	};
 
 	chosen {
@@ -388,7 +398,7 @@
 
 			vcc_1v8: DCDC_REG4 {
 				regulator-name = "vcc_1v8";
-				regulator-always-on;
+				regulator-always-on;    // Provide voltage to the level converter for hym8563 I2C communication
 				regulator-boot-on;
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
@@ -411,6 +421,8 @@
 
 			vcc3v0_touch: LDO_REG2 {
 				regulator-name = "vcc3v0_touch";
+				regulator-always-on;    // Provide voltage to the level converter for hym8563 I2C communication
+				regulator-boot-on;
 				regulator-min-microvolt = <3000000>;
 				regulator-max-microvolt = <3000000>;
 				regulator-state-mem {
@@ -561,6 +573,15 @@
 
 &i2c2 {
 	status = "okay";
+	i2c-scl-rising-time-ns = <300>;
+	i2c-scl-falling-time-ns = <300>;
+
+	hym8563: rtc@51 {
+		compatible = "haoyu,hym8563";
+		reg = <0x51>;
+		#clock-cells = <0>;
+		clock-output-names = "hym8563_xin32k";
+	};
 };
 
 &i2c3 {
