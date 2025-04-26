@@ -9,7 +9,7 @@
 下载[源码](https://github.com/ARM-software/arm-trusted-firmware/tags)并解压，编译:
 
 ```
-make CROSS_COMPILE=aarch64-linux-gnu- PLAT=rk3399 -j`nproc`
+make CROSS_COMPILE=aarch64-linux-gnu- PLAT=rk3399 -j$(nproc)
 ```
 
 编译成功后设置环境变量：
@@ -23,7 +23,7 @@ export BL31=arm-trusted-firmware目录/build/rk3399/release/bl31/bl31.elf
 下载[源码](https://github.com/OP-TEE/optee_os/tags)并解压，编译:
 
 ```
-make PLATFORM=rockchip-rk3399 -j`nproc`
+make PLATFORM=rockchip-rk3399 -j$(nproc)
 ```
 
 编译成功后设置环境变量：
@@ -37,7 +37,7 @@ export TEE=optee目录/out/arm-plat-rockchip/core/tee.bin
 下载主线U-Boot[源码](https://github.com/u-boot/u-boot/tags)，解压并打上项目中提供的patch，编译：
 
 ```
-make tn3399-v3-rk3399_defconfig && make CROSS_COMPILE=aarch64-linux-gnu- -j`nproc`
+make tn3399-v3-rk3399_defconfig && make CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)
 ```
 
 编译成功后，源码目录下出现`idbloader.img` `u-boot.itb`和`u-boot-rockchip.bin`，后者由前面两个镜像根据its合并而来

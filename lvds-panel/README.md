@@ -108,7 +108,7 @@ sudo apt install linux-headers-current-rockchip64 gcc make
 将仓库中的panel-toshiba-tc358775-2.0.0目录上传到Armbian中，执行：
 
 ```
-make -j`nproc`
+make -j$(nproc)
 sudo make install
 sudo depmod -a
 ```
