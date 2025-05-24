@@ -34,7 +34,7 @@ export TEE=optee目录/out/arm-plat-rockchip/core/tee.bin
 
 ## 编译U-Boot
 
-下载主线U-Boot[源码](https://github.com/u-boot/u-boot/tags)，解压并打上项目中提供的patch，编译：
+下载主线U-Boot[源码](https://github.com/u-boot/u-boot/tags)，解压并打上TN3399_V3的[patch](https://github.com/retro98boy/armbian-build/tree/v25.5.1/patch/u-boot/v2025.04/board_tiannuo-tn3399-v3)，编译：
 
 ```
 make tn3399-v3-rk3399_defconfig && make CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)
@@ -50,15 +50,15 @@ make tn3399-v3-rk3399_defconfig && make CROSS_COMPILE=aarch64-linux-gnu- -j$(npr
 
 ```
 # dd默认操作单位为1个block，1 block = 512 Byte，故64 block = 32 KiB，16384 block = 8192 KiB = 8 MiB
-dd if=idbloader.img of=path_to_your_img seek=64 status=progress oflag=direct conv=notrunc
-dd if=u-boot.itb of=path_to_your_img seek=16384 status=progress oflag=direct conv=notrunc
+dd if=idbloader.img of=path-to-your-img seek=64 status=progress oflag=direct conv=notrunc
+dd if=u-boot.itb of=path-to-your-img seek=16384 status=progress oflag=direct conv=notrunc
 ```
 
 # 编译内核
 
 ## 主线内核
 
-从kernel.org下载主线内核源码并解压，添加仓库提供的dts和TC358775驱动再编译
+从kernel.org下载主线内核源码并解压，添加仓库TN3399_V3的[dts](https://github.com/retro98boy/armbian-build/blob/v25.5.1/patch/kernel/archive/rockchip64-6.12/dt/rk3399-tn3399-v3.dts)再编译
 
 ## BSP内核
 
@@ -84,7 +84,7 @@ BSP内核推荐[mrfixit2001](https://github.com/mrfixit2001/rockchip-kernel)维�
 # 查找第一个未使用的loop设备，一般是/dev/loop0
 sudo losetup -f
 # 将/dev/loop0和img关联起来
-sudo losetup /dev/loop0 path_to_your_img
+sudo losetup /dev/loop0 path-to-your-img
 # 根据img更新/dev/loop的分区
 sudo partprobe /dev/loop0
 # 挂载分区到临时目录（假设img有两个分区，分别为根分区和boot分区）
@@ -215,8 +215,16 @@ sudo systemctl stop alsa-restore.service && sudo rm /var/lib/alsa/asound.state &
 
 [ALSA project - the C library reference](https://www.alsa-project.org/alsa-doc/alsa-lib/group__ucm__conf.html)
 
-# 其它固件
+# 固件
+
+[Armbian](https://github.com/retro98boy/armbian-build)
 
 [Batocera](https://github.com/retro98boy/batocera.linux)
 
 [OpenWrt](https://github.com/retro98boy/openwrt)
+
+# 杂项
+
+![emmc-short](pictures/emmc-short.jpg)
+
+![microusb](pictures/microusb.jpg)

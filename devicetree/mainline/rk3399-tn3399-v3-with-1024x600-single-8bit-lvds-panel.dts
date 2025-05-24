@@ -21,4 +21,3 @@
 		compatible = "tc358775,1024x600-single-8bit";
 	};
 };
-

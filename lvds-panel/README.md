@@ -210,7 +210,7 @@ PS：这里的clock即pixel clock，等于h_total * v_total * fps = (1024 + 156 
 
 - 在panel-toshiba-tc358775.c中添加static const struct drm_display_mode common_横向像素_纵向像素_display_mode片段，填上屏幕时序参数
 
-- 在panel-toshiba-tc358775.c中添加static const uint8_t tc358775_横向像素_纵向像素_dual/single_8bit_init_seq[27][6]片段，填上TC358775的寄存器设置。字节序是LSB First，例如013C 00030005，先传寄存器地址0x013C->0x3C 0x01，再传寄存器的值0x00030005->0x05 0x00 0x03 0x00，写成数组的格式为{ 0x3C, 0x01, 0x05, 0x00, 0x03, 0x00 },
+- 在panel-toshiba-tc358775.c中添加static const uint8_t tc358775_横向像素_纵向像素_dual/single_8bit_init_seq[27][6]片段，填上TC358775的寄存器设置。字节序是LSByte First，例如013C 00030005，先传寄存器地址0x013C->0x3C 0x01，再传寄存器的值0x00030005->0x05 0x00 0x03 0x00，写成数组的格式为{ 0x3C, 0x01, 0x05, 0x00, 0x03, 0x00 },
 
 - 在panel-toshiba-tc358775.c中添加static const struct tc358775_setting tc358775_横向像素_纵向像素_dual/single_8bit_setting片段，其成员`dsi_init_seq` `display_mode`分别指向上面的数组和结构体
 
