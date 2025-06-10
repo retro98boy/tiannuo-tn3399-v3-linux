@@ -34,7 +34,7 @@ export TEE=optee目录/out/arm-plat-rockchip/core/tee.bin
 
 ## 编译U-Boot
 
-下载主线U-Boot[源码](https://github.com/u-boot/u-boot/tags)，解压并打上TN3399_V3的[patch](https://github.com/retro98boy/armbian-build/tree/v25.5.1/patch/u-boot/v2025.04/board_tiannuo-tn3399-v3)，编译：
+在[retro98boy/armbian-build](https://github.com/retro98boy/armbian-build)仓库搜索tiannuo-tn3399-v3即可找到添加该设备支持的U-Boot补丁，给U-Boot源码打上补丁后，执行：
 
 ```
 make tn3399-v3-rk3399_defconfig && make CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)
@@ -58,7 +58,7 @@ dd if=u-boot.itb of=path-to-your-img seek=16384 status=progress oflag=direct con
 
 ## 主线内核
 
-从kernel.org下载主线内核源码并解压，添加仓库TN3399_V3的[dts](https://github.com/retro98boy/armbian-build/blob/v25.5.1/patch/kernel/archive/rockchip64-6.12/dt/rk3399-tn3399-v3.dts)再编译
+在[retro98boy/armbian-build](https://github.com/retro98boy/armbian-build)仓库搜索tiannuo-tn3399-v3即可找到该设备的主线内核dts
 
 ## BSP内核
 
