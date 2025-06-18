@@ -186,13 +186,11 @@ amixer -D hw:rockchiprt5640c cset name='Stereo ADC MIXL ADC1 Switch' on
 amixer -D hw:rockchiprt5640c cset name='Stereo ADC MIXR ADC1 Switch' on
 ```
 
-## UCM自动配置（推荐）
+## ALSA UCM自动配置（推荐）
 
-将`rockchip,rt5640-codec.conf`和`rockchip,rt5640-codec-HiFi.conf`移动到板子系统的`/usr/share/alsa/ucm2/conf.d/simple-card`中重启即可
+在[此处](https://github.com/retro98boy/armbian-build/tree/main/packages/bsp/rockchip-rt5640)下载`rockchip,rt5640-codec.conf`和`rockchip,rt5640-codec-HiFi.conf`，移动到板子系统的`/usr/share/alsa/ucm2/conf.d/simple-card`中重启即可
 
-conf文件在仓库的sound目录下
-
-如果系统不存在`/usr/share/alsa/ucm2/conf.d/simple-card`可以安装alsa-ucm-conf：
+如果系统中不存在`/usr/share/alsa/ucm2/conf.d/simple-card`可以安装alsa-ucm-conf：
 
 ```
 # Armbian
