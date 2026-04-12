@@ -136,7 +136,7 @@ Speaker输出由ALC5640 Codec加NS4258 PA提供，将板子散热片朝上、网
 
 ```
 **** List of PLAYBACK Hardware Devices ****
-card 0: rockchiprt5640c [rockchip,rt5640-codec], device 0: ff890000.i2s-rt5640-aif1 rt5640-aif1-0 [ff890000.i2s-rt5640-aif1 rt5640-aif1-0]
+card 0: tn3399v3 [tn3399-v3], device 0: ff890000.i2s-rt5640-aif1 rt5640-aif1-0 [ff890000.i2s-rt5640-aif1 rt5640-aif1-0]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 card 1: hdmisound [hdmi-sound], device 0: ff8a0000.i2s-i2s-hifi i2s-hifi-0 [ff8a0000.i2s-i2s-hifi i2s-hifi-0]
@@ -150,7 +150,7 @@ card 1: hdmisound [hdmi-sound], device 0: ff8a0000.i2s-i2s-hifi i2s-hifi-0 [ff8a
 # 查看可使用的播放设备
 mpv --audio-device=help
 # 使用ALC5640播放
-mpv --audio-device='alsa/default:CARD=rockchiprt5640c' --no-video test.mp3
+mpv --audio-device='alsa/default:CARD=tn3399v3' --no-video test.mp3
 ```
 
 如果无声音，可能是ALC5640内部的音频路由错误，参考下面两种方法配置音频路由
@@ -161,34 +161,34 @@ mpv --audio-device='alsa/default:CARD=rockchiprt5640c' --no-video test.mp3
 
 ```
 # Speaker
-amixer -D hw:rockchiprt5640c cset name='Stereo DAC MIXL DAC L1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='Stereo DAC MIXR DAC R1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='SPOL MIX DAC L1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='SPOR MIX DAC R1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='Speaker L Playback Switch' on
-amixer -D hw:rockchiprt5640c cset name='Speaker R Playback Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo DAC MIXL DAC L1 Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo DAC MIXR DAC R1 Switch' on
+amixer -D hw:tn3399v3 cset name='SPOL MIX DAC L1 Switch' on
+amixer -D hw:tn3399v3 cset name='SPOR MIX DAC R1 Switch' on
+amixer -D hw:tn3399v3 cset name='Speaker L Playback Switch' on
+amixer -D hw:tn3399v3 cset name='Speaker R Playback Switch' on
 # 音量 0 - 39
-# amixer -D hw:rockchiprt5640c cset name='Speaker Playback Volume' 39
+# amixer -D hw:tn3399v3 cset name='Speaker Playback Volume' 39
 
 # Headphone
-amixer -D hw:rockchiprt5640c cset name='Stereo DAC MIXL DAC L1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='Stereo DAC MIXR DAC R1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='HPO MIX DAC1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='HP L Playback Switch' on
-amixer -D hw:rockchiprt5640c cset name='HP R Playback Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo DAC MIXL DAC L1 Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo DAC MIXR DAC R1 Switch' on
+amixer -D hw:tn3399v3 cset name='HPO MIX DAC1 Switch' on
+amixer -D hw:tn3399v3 cset name='HP L Playback Switch' on
+amixer -D hw:tn3399v3 cset name='HP R Playback Switch' on
 # 音量 0 - 39
-# amixer -D hw:rockchiprt5640c cset name='HP Playback Volume' 39
+# amixer -D hw:tn3399v3 cset name='HP Playback Volume' 39
 
 # Microphone_IN1
-amixer -D hw:rockchiprt5640c cset name='RECMIXL BST1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='RECMIXR BST1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='Stereo ADC MIXL ADC1 Switch' on
-amixer -D hw:rockchiprt5640c cset name='Stereo ADC MIXR ADC1 Switch' on
+amixer -D hw:tn3399v3 cset name='RECMIXL BST1 Switch' on
+amixer -D hw:tn3399v3 cset name='RECMIXR BST1 Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo ADC MIXL ADC1 Switch' on
+amixer -D hw:tn3399v3 cset name='Stereo ADC MIXR ADC1 Switch' on
 ```
 
 ## ALSA UCM自动配置（推荐）
 
-在[此处](https://github.com/retro98boy/armbian-build/tree/main/packages/bsp/rockchip-rt5640)下载`rockchip,rt5640-codec.conf`和`rockchip,rt5640-codec-HiFi.conf`，移动到板子系统的`/usr/share/alsa/ucm2/conf.d/simple-card`中重启即可
+在[此处](https://github.com/retro98boy/armbian-build/tree/main/packages/bsp/tiannuo-tn3399-v3)下载`tn3399-v3.conf`和`tn3399-v3-HiFi.conf`，移动到板子系统的`/usr/share/alsa/ucm2/conf.d/simple-card`中重启即可
 
 如果系统中不存在`/usr/share/alsa/ucm2/conf.d/simple-card`可以安装alsa-ucm-conf：
 
@@ -219,7 +219,7 @@ sudo systemctl stop alsa-restore.service && sudo rm /var/lib/alsa/asound.state &
 
 [Batocera](https://github.com/retro98boy/batocera.linux)
 
-[OpenWrt](https://github.com/retro98boy/openwrt)
+~~[OpenWrt](https://github.com/retro98boy/openwrt)~~
 
 # 杂项
 
